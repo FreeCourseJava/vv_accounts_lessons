@@ -7,6 +7,12 @@ public class Account implements Indexable<String>{
     
     public double balance;
 
+    public Account(String accountName, String currencyAbbrev, double balance) {
+        this.accountName = accountName;
+        this.currencyAbbrev = currencyAbbrev;
+        this.balance = balance;
+    }
+
     @Override
     public String toString() {
         return "Account{" +
@@ -19,5 +25,9 @@ public class Account implements Indexable<String>{
     @Override
     public String getId() {
         return this.accountName;
+    }
+
+    public double getBalance() {
+        return this.balance;
     }
 }
