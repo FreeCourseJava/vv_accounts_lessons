@@ -13,7 +13,7 @@ public class MoneyTransferService {
         this.convertor = convertor;
     }
 
-    public void run(String from, String to, double amount){
+    public Boolean run(String from, String to, double amount){
 
         Account fromAccount = rep.getValue(from);
         Account toAccount = rep.getValue(to);
@@ -21,7 +21,10 @@ public class MoneyTransferService {
             if (fromAccount.deductMoney(amount)) {
                 toAccount.addMoney(amount * convertor.getRate(fromAccount.getCurrency(),toAccount.getCurrency()));
                 rep.sync();
+                return true;
             }
         }
+
+        return false;
     }
 }

@@ -1,7 +1,6 @@
 package org.homework.repository;
 
 import com.google.gson.Gson;
-import org.homework.entity.Account;
 import org.homework.entity.Indexable;
 
 import java.io.BufferedReader;
@@ -13,22 +12,20 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class Repository <K,V extends Indexable>{
+public class Repository <K,V extends Indexable<K>>{
 
-    private Gson gson = new Gson();
-    private String filePath;
-    private Class<V[]> storageType;
+    private final Gson gson = new Gson();
+    private final String filePath;
 
     private Map<K,V> entityMap;
 
-    public Repository(String filePath, Class storageType) {
+    public Repository(String filePath, Class<V[]> storageType) {
         this.filePath = filePath;
-        this.storageType = storageType;
         try (FileReader file = new FileReader(filePath)) {
 
             BufferedReader accountsReader = new BufferedReader(file);
             V[] entities = gson.fromJson(accountsReader, (Type) storageType);
-            entityMap= Arrays.stream(entities).collect(Collectors.toMap((entity) -> (K) entity.getId(), Function.identity()));
+            entityMap= Arrays.stream(entities).collect(Collectors.toMap(Indexable::getId, Function.identity()));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -38,11 +35,6 @@ public class Repository <K,V extends Indexable>{
 
     public V getValue(K key) {
         return entityMap.get(key);
-    }
-    public void updateValue(K key, V value) {
-        if (key.equals(value.getId())) {
-            entityMap.replace(key, value);
-        }
     }
 
     public void sync () {
