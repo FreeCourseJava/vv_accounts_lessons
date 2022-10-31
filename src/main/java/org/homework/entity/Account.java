@@ -30,4 +30,23 @@ public class Account implements Indexable<String>{
     public double getBalance() {
         return this.balance;
     }
+
+    public String getCurrency() {
+        return this.currencyAbbrev;
+    }
+
+    public Boolean deductMoney (double amount) {
+        if (amount >0 && this.balance > amount) {
+            this.balance -= amount;
+            return true;
+        }
+
+        return false;
+
+    }
+
+    public void addMoney(double amount) {
+        this.balance += amount;
+    }
+
 }

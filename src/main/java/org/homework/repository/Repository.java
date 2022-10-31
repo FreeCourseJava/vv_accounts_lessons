@@ -6,6 +6,7 @@ import org.homework.entity.Indexable;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.Map;
@@ -41,6 +42,14 @@ public class Repository <K,V extends Indexable>{
     public void updateValue(K key, V value) {
         if (key.equals(value.getId())) {
             entityMap.replace(key, value);
+        }
+    }
+
+    public void sync () {
+        try (FileWriter file = new FileWriter(this.filePath)) {
+            this.gson.toJson(entityMap.values().toArray(),file);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
