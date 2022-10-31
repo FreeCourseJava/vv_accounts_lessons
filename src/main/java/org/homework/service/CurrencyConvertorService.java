@@ -12,7 +12,7 @@ public class CurrencyConvertorService {
     }
 
     public double getRate(String from, String to) {
-        return Math.floor((rep.getValue(to).getRate() / rep.getValue(from).getRate()) * 100d + 0.5d) / 100d;
+        return rep.getValue(to).getRate() / rep.getValue(from).getRate();
     }
 
 }

@@ -19,7 +19,6 @@ public class Main {
         System.out.println(accountsRepository.getValue("Alexey"));
         System.out.println(accountsRepository.getValue("Sasha"));
 
-        System.out.println(convertorService.getRate("KZT","USD"));
         accountController.receiveCommand();
 
 //        transferService.run("Alexey", "Sasha", 99.99);
