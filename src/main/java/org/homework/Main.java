@@ -10,8 +10,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        AccountsRepository accountsRepository = new AccountsRepository("/home/victor/IdeaProjects/vv_accounts_lessons/accounts_formatted.json");
-        CurrencyRepository currencyRepository = new CurrencyRepository("/home/victor/IdeaProjects/vv_accounts_lessons/currencies_formatted.json");
+        AccountsRepository accountsRepository = new AccountsRepository("./accounts_formatted.json");
+        CurrencyRepository currencyRepository = new CurrencyRepository("./currencies_formatted.json");
         CurrencyConvertorService convertorService = new CurrencyConvertorService(currencyRepository);
         MoneyTransferService transferService = new MoneyTransferService(accountsRepository, convertorService);
         AccountControllerStdIn accountController = new AccountControllerStdIn(transferService);
@@ -26,5 +26,5 @@ public class Main {
         System.out.println(accountsRepository.getValue("Sasha"));
 
     }
-    
+
 }

@@ -35,7 +35,7 @@ public class Account implements Indexable<String>{
         return this.currencyAbbrev;
     }
 
-    public Boolean deductMoney (double amount) {
+    public boolean deductMoney (double amount) {
         if (amount >0 && this.balance > amount) {
             this.balance -= amount;
             return true;
