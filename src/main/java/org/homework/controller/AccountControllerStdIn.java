@@ -1,9 +1,12 @@
 package org.homework.controller;
 
+import org.homework.di.Genesis;
+import org.homework.di.Service;
 import org.homework.service.MoneyTransferService;
 
 import java.util.Scanner;
 
+@Service
 public class AccountControllerStdIn implements AccountController {
 
     private MoneyTransferService service;
@@ -13,6 +16,7 @@ public class AccountControllerStdIn implements AccountController {
     }
 
     @Override
+    @Genesis
     public void receiveCommand() {
 
         Scanner scan = new Scanner(System.in);

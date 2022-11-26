@@ -1,8 +1,10 @@
 package org.homework.service;
 
+import org.homework.di.Service;
 import org.homework.entity.Account;
 import org.homework.repository.AccountsRepository;
 
+@Service
 public class MoneyTransferService {
 
     AccountsRepository rep;

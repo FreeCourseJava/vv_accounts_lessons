@@ -1,10 +1,13 @@
 package org.homework.repository;
 
+import org.homework.di.DefaultValue;
+import org.homework.di.Service;
 import org.homework.entity.Currency;
 
-public class CurrencyRepository extends Repository<String, Currency>{
+@Service
+public class CurrencyRepository extends Repository<String, Currency> {
 
-    public CurrencyRepository(String filePath) {
+    public CurrencyRepository(@DefaultValue("./currencies_formatted.json") String filePath) {
         super(filePath, Currency[].class);
     }
 }
