@@ -1,10 +1,10 @@
 package org.homework.entity;
 
-public class Account implements Indexable<String>{
+public class Account implements Indexable<String> {
     public String accountName;
-    
+
     public String currencyAbbrev;
-    
+
     public double balance;
 
     public Account(String accountName, String currencyAbbrev, double balance) {
@@ -35,8 +35,8 @@ public class Account implements Indexable<String>{
         return this.currencyAbbrev;
     }
 
-    public boolean deductMoney (double amount) {
-        if (amount >0 && this.balance > amount) {
+    public boolean deductMoney(double amount) {
+        if (amount > 0 && this.balance > amount) {
             this.balance -= amount;
             return true;
         }

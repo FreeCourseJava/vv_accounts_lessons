@@ -12,12 +12,12 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class Repository <K,V extends Indexable<K>>{
+public class Repository<K, V extends Indexable<K>> {
 
     private final Gson gson = new Gson();
     private final String filePath;
 
-    private Map<K,V> entityMap;
+    private Map<K, V> entityMap;
 
     public Repository(String filePath, Class<V[]> storageType) {
         this.filePath = filePath;
@@ -25,7 +25,7 @@ public class Repository <K,V extends Indexable<K>>{
 
             BufferedReader accountsReader = new BufferedReader(file);
             V[] entities = gson.fromJson(accountsReader, (Type) storageType);
-            entityMap= Arrays.stream(entities).collect(Collectors.toMap(Indexable::getId, Function.identity()));
+            entityMap = Arrays.stream(entities).collect(Collectors.toMap(Indexable::getId, Function.identity()));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -37,9 +37,9 @@ public class Repository <K,V extends Indexable<K>>{
         return entityMap.get(key);
     }
 
-    public void sync () {
+    public void sync() {
         try (FileWriter file = new FileWriter(this.filePath)) {
-            this.gson.toJson(entityMap.values().toArray(),file);
+            this.gson.toJson(entityMap.values().toArray(), file);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
