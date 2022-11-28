@@ -7,7 +7,7 @@ import org.homework.entity.Account;
 @Service
 public class AccountsRepository extends Repository<String, Account> {
 
-    public AccountsRepository(@DefaultValue("./accounts_formatted.json") String filePath) {
+    public AccountsRepository(@DefaultValue("./data/accounts_formatted.json") String filePath) {
         super(filePath, Account[].class);
 
     }
