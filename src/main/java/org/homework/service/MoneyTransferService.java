@@ -15,13 +15,13 @@ public class MoneyTransferService {
         this.convertor = convertor;
     }
 
-    public Boolean run(String from, String to, double amount){
+    public Boolean run(String from, String to, double amount) {
 
         Account fromAccount = rep.getValue(from);
         Account toAccount = rep.getValue(to);
-        if ( fromAccount != null && toAccount != null) {
+        if (fromAccount != null && toAccount != null) {
             if (fromAccount.deductMoney(amount)) {
-                toAccount.addMoney(amount * convertor.getRate(fromAccount.getCurrency(),toAccount.getCurrency()));
+                toAccount.addMoney(amount * convertor.getRate(fromAccount.getCurrency(), toAccount.getCurrency()));
                 rep.sync();
                 return true;
             }

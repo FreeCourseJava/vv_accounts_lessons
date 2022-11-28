@@ -1,7 +1,7 @@
 package org.homework.entity;
 
-public class Currency implements Indexable<String>{
-    
+public class Currency implements Indexable<String> {
+
     public double rateToUsd;
     public String abbrev;
 

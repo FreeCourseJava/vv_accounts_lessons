@@ -3,6 +3,7 @@ package org.homework.repository;
 import org.homework.di.DefaultValue;
 import org.homework.di.Service;
 import org.homework.entity.Account;
+
 @Service
 public class AccountsRepository extends Repository<String, Account> {
 
